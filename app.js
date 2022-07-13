@@ -16,7 +16,8 @@ app.use("/api/v1/user", Routercollection.userRouter)
 app.use("/api/v1/product", Routercollection.productRouter)
 app.use("/api/v1/comment", Routercollection.commentRouter)
 connectdb()
-app.get("/", (req, res) => res.sendFile(path.join(__dirname, "../fe/index.html")))
+
+app.get("/", (req, res) => res.json("welcome"))
 const server = app.listen(process.env.PORT, () => {
     console.log(`server is runnin on port`);
 })
