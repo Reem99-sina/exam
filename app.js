@@ -15,6 +15,13 @@ app.use("/api/v1/uploads", express.static(path.join(__dirname, './uploads')))
 app.use("/api/v1/user", Routercollection.userRouter)
 app.use("/api/v1/product", Routercollection.productRouter)
 app.use("/api/v1/comment", Routercollection.commentRouter)
+app.use(cors(
+    {
+      origin: {"https://exam-nine-amber.vercel.app/"},
+      methods: {"POST", "GET", "DELETE", "PUT"},
+      credentials: true
+    }
+  ))
 connectdb()
 app.get("/", (req, res) => res.json("welcome"))
 const server = app.listen(process.env.PORT, () => {
