@@ -11,8 +11,8 @@ const { invoiceProducts } = require('./modules/product/controler/product.service
 require("dotenv").config()
 app.use(cors())
 app.use(express.json())
-app.use("/api/v1/uploads", express.static(path.join(__dirname, './uploads')))
-app.use("/api/v1/uploads/picture", express.static(path.join(__dirname, './uploads/picture')))
+app.use("/api/v1/uploads",express.static('./uploads/picture'))
+app.use("/api/v1/uploads/picture",  express.static('./uploads/picture'))
 
 app.use("/api/v1/user", Routercollection.userRouter)
 app.use("/api/v1/product", Routercollection.productRouter)
