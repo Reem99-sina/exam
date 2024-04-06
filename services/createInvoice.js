@@ -1,17 +1,13 @@
 const fs = require("fs");
 const PDFDocument = require("pdfkit");
-
 function createInvoice(invoice, path) {
   let doc = new PDFDocument({ size: "A4", margin: 50 });
-
   generateHeader(doc);
   generateInvoiceTable(doc, invoice);
   generateFooter(doc);
-
   doc.end();
   doc.pipe(fs.createWriteStream(path));
 }
-
 function generateHeader(doc) {
   doc
     .fillColor("black")
@@ -19,12 +15,9 @@ function generateHeader(doc) {
     .text("products today", 50, 57)
     .moveDown();
 }
-
 function generateInvoiceTable(doc, invoice) {
   let i;
   const invoiceTableTop = 200;
-
-
   doc.font("Helvetica-Bold").fillColor("blue");
   generateTableRow(
     doc,
@@ -35,7 +28,6 @@ function generateInvoiceTable(doc, invoice) {
   );
   generateHr(doc, invoiceTableTop + 20);
   doc.font("Helvetica").fillColor("black");
-
   for (i = 0; i < invoice.items.length; i++) {
     const item = invoice.items[i];
     const position = invoiceTableTop + (i + 1) * 30;
@@ -49,7 +41,6 @@ function generateInvoiceTable(doc, invoice) {
     generateHr(doc, position + 20);
   }
 }
-
 function generateFooter(doc) {
   doc
     .fontSize(10)
@@ -60,7 +51,6 @@ function generateFooter(doc) {
       { align: "center", width: 500 }
     );
 }
-
 function generateTableRow(
   doc,
   y,
@@ -78,7 +68,6 @@ function generateTableRow(
     .text(quantity, 370, y, { width: 90, align: "right" })
     .text(lineTotal, 0, y, { align: "right" });
 }
-
 function generateHr(doc, y) {
   doc
     .strokeColor("#aaaaaa")
@@ -87,8 +76,6 @@ function generateHr(doc, y) {
     .lineTo(550, y)
     .stroke();
 }
-
-
 module.exports = {
   createInvoice
 };

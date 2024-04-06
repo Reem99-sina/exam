@@ -11,15 +11,14 @@ const { invoiceProducts } = require('./modules/product/controler/product.service
 require("dotenv").config()
 app.use(cors())
 app.use(express.json())
-app.use('/api/v1/uploads', express.static(path.join(__dirname, './uploads')))
+app.use("/api/v1/uploads", express.static(path.join(__dirname, './uploads')))
 app.use("/api/v1/user", Routercollection.userRouter)
 app.use("/api/v1/product", Routercollection.productRouter)
 app.use("/api/v1/comment", Routercollection.commentRouter)
 connectdb()
-
 app.get("/", (req, res) => res.json("welcome"))
 const server = app.listen(process.env.PORT, () => {
-    console.log(`server is runnin on port`);
+    console.log("server is running on port");
 })
 const io = require("socket.io")(server, {
     cors: "*"
@@ -36,7 +35,6 @@ io.on('connection', function (socket) {
     })
     socket.on("privteMessage", (data) => {
         console.log(data)
-
         socket.broadcast.emit('result', { message: 'Done', data })
         // socket.to(data.destID).emit('reply', 'messageRecived') // send to specific socket id
         // io.to(data.destID).emit('reply', 'messageRecived')// send to specific socket id

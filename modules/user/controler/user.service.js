@@ -45,7 +45,6 @@ module.exports.confirm = async (req, res) => {
 module.exports.signin = async (req, res) => {
     try {
         const { Email, Password } = req.body
-
         const user = await userModel.findOne({ Email })
         if (!user) {
             res.status(400).json({ message: "user not existed" })

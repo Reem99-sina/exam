@@ -18,8 +18,6 @@ productSchema.pre("findOneAndUpdate", async function (next) {
     this.set({ __v: version.__v + 1 })
     next()
 })
-// productSchema.post("save", async function (next) {
 
-// })
 const productModel = mongoose.model("product", productSchema)
 module.exports = productModel
