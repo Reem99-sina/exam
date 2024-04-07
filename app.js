@@ -12,7 +12,7 @@ require("dotenv").config()
 
 app.use(express.json())
 app.use("/api/v1/uploads",express.static('./uploads/picture'))
-app.use("/api/v1/uploads/picture",  express.static('./uploads/picture'))
+app.use("/var/task/uploads/picture",  express.static('./uploads/picture'))
 
 app.use("/api/v1/user", Routercollection.userRouter)
 app.use("/api/v1/product", Routercollection.productRouter)
